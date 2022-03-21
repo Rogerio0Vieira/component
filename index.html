@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+  <script type="text/babel">
+
+    const Header = ({ children }) => (
+      <header className="containerHeader">
+        <h1 className="headerTitle">Contacts</h1>
+        {children}
+      </header>
+    );
+
+    const SearchBar = () => (
+      <input type="text" placeholder="Search"></input>
+    );
+
+    const MainContent = ({ children }) => (
+      <main className="mainContent">
+        {children}
+      </main>
+    );
+
+    const ContactList = ({ children }) => (
+      <div className="contactListContainer">
+        <ul className="contactList">
+          {children}
+        </ul>
+      </div>
+    );
+
+    const Contact = ({ photo, name, title }) => (
+      <article className="contactContainer">
+        <div className="details">
+          <img src={photo} />
+          <div>
+            <h1 className="name">{name}</h1>
+            <h3 className="title">{title}</h3>
+          </div>
+        </div>
+        <div className="buttons">
+          <button type="button" className="button">Call</button>
+          <button type="button" className="button">Send e-mail</button>
+        </div>
+      </article>
+    );
+
+    const Footer = ({ contactNumber }) => (
+      <footer>
+        We found {contactNumber} contacts
+      </footer>
+    );
+
+    const element = (
+      <>
+        <Header>
+          <SearchBar />
+        </Header>
+        <MainContent>
+          <ContactList>
+            <Contact photo="./imagens/Perfil.jpeg" name="Rogério Fragmentado" title="Desenvolvedor backend" />
+            <Contact photo="./imagens/Perfil.jpeg" name="Rogério Fragmentado 2" title="Desenvolvedor frontend" />
+            <Contact photo="./imagens/Perfil.jpeg" name="Rogério Fragmentado 3" title="UX Desing" />
+            <Contact photo="./imagens/Perfil.jpeg" name="Rogério Fragmentado 4" title="Master chef" />
+            <Footer contactNumber={23} />
+          </ContactList>
+        </MainContent>
+      </>
+    );
+
+    const rootElement = document.getElementById('root');
+
+    ReactDOM.render(element, rootElement);
+  </script>
+</body>
+
+</html>
